@@ -32,12 +32,13 @@ export async function createInvoice(formData: FormData) {
       VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
     `;
 
-    revalidatePath('/dashboard/invoices');
-    redirect('/dashboard/invoices');
+    
   } catch (error) {
     console.log("Error: ", error);
     throw new Error('Failed to Add Invoice');
   }
+  revalidatePath('/dashboard/invoices');
+  redirect('/dashboard/invoices');
 }
 
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
@@ -59,10 +60,11 @@ export async function updateInvoice(id: string, formData: FormData) {
       WHERE id = ${id}
     `;
   
-    revalidatePath('/dashboard/invoices');
-    redirect('/dashboard/invoices');
+    
   } catch (error) {
     console.log("Error: ", error);
     throw new Error('Failed to Update Invoice');
   }
+  revalidatePath('/dashboard/invoices');
+  redirect('/dashboard/invoices');
 }
